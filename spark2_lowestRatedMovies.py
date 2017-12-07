@@ -34,6 +34,6 @@ if __name__ == '__main__':
     topTen = averagesAndCounts.orderBy('avg(rating)').take(10)
 
     for movie in topTen:
-        print movieName[movie[0]], movie[1], movie[2]
+        print(movieName[movie[0]], movie[1], movie[2])
 
     spark.stop()
