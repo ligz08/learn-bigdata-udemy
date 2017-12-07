@@ -41,7 +41,7 @@ if __name__ == '__main__':
     ratingCounts = ratings.groupBy('movieID').count().filter('count>100')
     popularMovies = ratingCounts.select('movieID').withColumn('userID', lit(6))
 
-    recommendations = model.tranform(popularMovies)
+    recommendations = model.transform(popularMovies)
 
     topRecommendations = recommendations.sort(recommendations.prediction.desc()).take(20)
 
