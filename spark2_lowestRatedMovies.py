@@ -16,13 +16,13 @@ def parseInput(line):
 
 
 if __name__ == '__main__':
-    # Create Spark session
+    # Create Spark session, which is a Spark 2.0 style way of doing things
     spark = SparkSession.builder.appName('PopularMovies').getOrCreate()
 
     movieName = loadMovieNames()
 
     lines = spark.sparkContext.textFile('hdfs:///user/maria_dev/ml-100k/u.data')    # get raw data from text file
-    movies = lines.map(parseInput)
+    movies = lines.map(parseInput)  # for each line in lines, apply parseInput() and convert it to a Row object
     movieDataset = spark.createDataFrame(movies)
 
     averageRatings = movieDataset.groupBy('movieID').avg('rating')
@@ -34,6 +34,6 @@ if __name__ == '__main__':
     topTen = averagesAndCounts.orderBy('avg(rating)').take(10)
 
     for movie in topTen:
-        print(movieName[movie[0]], movie[1], movie[2])
+        print movieName[movie[0]], movie[1], movie[2]
 
     spark.stop()
