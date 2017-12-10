@@ -16,6 +16,7 @@ if __name__=='__main__':
 
     worstMovies = ratingCounts.join(avgRatings, 'movieID').orderBy('avg(rating)', ascending=True).take(10)
 
+    print('Worst movies with more than 10 ratings: (Movie name, Count of ratings, Average rating)')
     for movie in worstMovies:
         print(movieNames[movie['movieID']], movie['count'], '{0:.1f}'.format(movie['avg(rating)']))
 
