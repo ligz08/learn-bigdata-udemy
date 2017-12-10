@@ -14,9 +14,9 @@ if __name__=='__main__':
     ratingCounts = ratings.groupBy('movieID').count().filter('count>10')
     avgRatings = ratings.groupBy('movieID').avg('rating')
 
-    worstMovies = ratingCounts.join(avgRatings, 'movieID').orderBy('avg(rating)', ascending=False).take(10)
+    worstMovies = ratingCounts.join(avgRatings, 'movieID').orderBy('avg(rating)', ascending=True).take(10)
 
     for movie in worstMovies:
-        print(movie)
+        print(movieNames[movie['movieID']], movie['count'], '{0:.1f}'.format(movie['avg(rating)']))
 
     spark.stop()
