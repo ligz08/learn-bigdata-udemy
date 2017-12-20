@@ -7,5 +7,6 @@ I included info from other resources too.
 - [Hive Notes](Hive%20Notes.md)
 
 ## Spark
+- [Spark SQL Notes](Spark%20SQL%20&%20Data%20Frames.md)
 
 ## Pig

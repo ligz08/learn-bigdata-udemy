@@ -23,7 +23,7 @@ Spark SQL is awesome because:
 ### Interactive Shell  
 `pyspark` -- a python interactive shell to run Spark
 
-### `pyspark.SQLContext` example
+### SQLContent
 
 A `pyspark` `SQLContext` example for processing text file:  (using Spark version 1)  
 Assume the text file looks like this:
@@ -64,7 +64,7 @@ for teenName in teenNames.collect():
 Here [`.collect()`](https://spark.apache.org/docs/2.2.0/api/python/pyspark.html#pyspark.RDD.collect) method returns a list of rows/elements in an RDD object.
 
 
-### `pyspark.HiveContext` example
+### HiveContext
 Basic steps:  
 - create a `HiveContext` instance
 - do all that good stuff you can do with Hive QL, wrapped in the `.sql()` method (refer to: [Hive notes](Hive%20Notes.md))
