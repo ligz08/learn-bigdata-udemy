@@ -14,7 +14,8 @@ Spark SQL is awesome because:
 
 ## `sapark-shell` -- Spark Interactive Shell with Scala  
 - Run: `spark-sell`  
-- Query: `sqlContext.sql('Hive QL')` *note: no `;` at the end of HQL string  
+- Query: `sqlContext.sql('Hive QL')`  
+*note: no `;` at the end of HQL string  
 
 
 
@@ -23,7 +24,7 @@ Spark SQL is awesome because:
 ### Interactive Shell  
 `pyspark` -- a python interactive shell to run Spark
 
-### SQLContent
+### SQLContext
 
 A `pyspark` `SQLContext` example for processing text file:  (using Spark version 1)  
 Assume the text file looks like this:
@@ -37,7 +38,13 @@ The  Python script:
 from pyspark.sql import SQLContext, Row
 sqlContext = SQLContext(sc)
 ```
-Note that `sc` is a Spark Context object that Spark should have created for you before this script is executed.  
+Note that `sc` is a Spark Context object that Spark should have created for you before this script is executed.
+When running spark inside a `.py` script, import `spark.SparkContext` and create the `sc` object yourself. 
+```python
+from pyspark import SparkContext
+sc = SparkContext()
+``` 
+
 The SQLContext object is a wrapper around the Spark Context.
 ```python
 lines = sc.textFile('path/to/your/file.csv')
@@ -104,7 +111,8 @@ df.write \
 ```
 Useful DF methods:
 - [`df.printSchema()`](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.printSchema) -- print schema with some style
-- [`df.collect()`](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.collect) -- return a list of rows to Python
-- [`df.show()`](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.show) -- print what's in the df on screen (don't use on big df)
+- [`df.collect()`](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.collect) -- return a list of `Row` objects to Python
+- [`df.show(n_rows, truncate=True)`](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.show) -- print what's in the df on screen (don't use on big df)
 - [`df.registerTempTable('table_name')`](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.registerTempTable)  -- register df as a table, so you can refer to the `table_name  ` in later HQL queries.
-- [`df.saveAsTable()`](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrameWriter.saveAsTable) -- save the df content as a table in Hive
+- [`df.saveAsTable()`](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrameWriter.saveAsTable) -- save the df content as a table in Hive  
+- [`df.describe()`]() -- show summary statistics 

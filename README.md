@@ -8,5 +8,6 @@ I included info from other resources too.
 
 ## Spark
 - [Spark SQL Notes](Spark%20SQL%20&%20Data%20Frames.md)
+- [Spark GraphFrames Notes](Spark%20GraphFrames.md)
 
 ## Pig
