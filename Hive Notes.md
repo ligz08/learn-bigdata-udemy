@@ -46,7 +46,7 @@ LOAD DATA [LOCAL] INPATH ‘path’ OVERWRITE INTO TABLE table_name;
 ```
 
 # Managed vs. External table
-Managed tables (default option when creating a table) are managed when Hive.  
+Managed tables (default option when creating a table) are managed within Hive.
 
 External tables are pointers to data files, and the data files may be shared with other programs.  
 
