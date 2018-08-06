@@ -1,8 +1,8 @@
 # Hive Theory
-Hive is based on **Hadoop** and **MapReduce**.
+Hive is based on **Hadoop** and **MapReduce** (or **Tez**).
 
 Hive is good at:  
-- OLAP
+- OLAP (online analytical processing)
 
 Hive is bad at:  
 - Small data set
@@ -15,13 +15,16 @@ Hive data model:
 
 **Metadata**: data about the database itself.
 
-# Hive Client
+# Hive CLI
+
+## Start Hive CLI
+
 - `hive`: interactive shell  
 - `hive -e ‘SELECT * FROM tbl;’` -- run single query from terminal
 - `hive -f path_to_file.sql` -- run a sql script file
 
+## Inside Hive CLI
 
-# Hive Admin Commands
 - `show databases;`
 - `show tables;`
 - `desc [formatted] table_name;` -- describe a table
@@ -45,7 +48,35 @@ TBLPROPERTIES (...);
 LOAD DATA [LOCAL] INPATH ‘path’ OVERWRITE INTO TABLE table_name;
 ```
 
+# Relational Database ⇄ Hive (Sqoop)
+
+## RDB → Hive (`sqoop import`)
+
+### Reference
+
+[Scoop User Guide `scoop-import`](https://sqoop.apache.org/docs/1.4.0-incubating/SqoopUserGuide.html#id1762844)
+
+### Generic syntax
+
+```shell
+$ sqoop import (generic-args) (import-args)
+$ sqoop-import (generic-args) (import-args)
+```
+
+### Common usage
+
+```shell
+sqoop import --connect <jdbc-connect-string> --driver <jdbc.driver.class> --table <tablename> --username <rdb_username> --password <rdb_password> --hive-import
+```
+
+> `--hive-import` tells Sqoop to import a RDB table straight into a Hive table. Otherwise it outputs the table as a csv in HDFS.
+
+### Examples
+
+// TODO
+
 # Managed vs. External table
+
 Managed tables (default option when creating a table) are managed within Hive.
 
 External tables are pointers to data files, and the data files may be shared with other programs.  
